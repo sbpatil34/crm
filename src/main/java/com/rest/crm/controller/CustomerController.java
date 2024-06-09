@@ -34,12 +34,12 @@ public class CustomerController {
 	
 	@GetMapping("/customers")
 	public  ResponseEntity<List<Customer>> getAllCustomers() {
-		 return customerService.getAllCutomers();
+		 return customerService.getAllCustomers();
 	}
 	
 	@PostMapping("/customers")
 	public  ResponseEntity<String> addCustomer(@Valid @RequestBody Customer customer) throws CustomerException{
-		return customerService.addCutomer(customer);
+		return customerService.addCustomer(customer);
 	}
 	
 	@GetMapping("/customers/{emailId}")
