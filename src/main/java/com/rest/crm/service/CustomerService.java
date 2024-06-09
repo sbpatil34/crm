@@ -20,17 +20,16 @@ public class CustomerService {
 
 	@Autowired 
 	private CustomerRepository customerRepository;
+	private static Logger logger = LoggerFactory.getLogger(CustomerService.class);
 	
-	public ResponseEntity<List<Customer>> getAllCutomers(){
+	public ResponseEntity<List<Customer>> getAllCustomers(){
 		return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.OK);
 	}
 	
-	public ResponseEntity<String> addCutomer(Customer customer) throws CustomerException{
-		Logger logger = LoggerFactory.getLogger(CustomerService.class);
-		System.out.println("-------------------Sandeep");
-		logger.info("-------------------Sandeep");
-		logger.debug("----------------Sandeep");
-		logger.info("Info level - Hello Logback {}", "Sandeep");
+	public ResponseEntity<String> addCustomer(Customer customer) throws CustomerException{
+		logger.info("Adding customer record firstName : "+customer.getFirstName());
+		logger.info("email:"+customer.getEmail());
+		logger.info("phoneNumber:" + customer.getPhoneNumber());	
 		try{
 			customerRepository.save(customer);
 			return new ResponseEntity<String>("added", HttpStatus.OK);			
@@ -40,6 +39,7 @@ public class CustomerService {
 	}
 		
 	public ResponseEntity<Customer> getCustomerByEmail(String email) throws CustomerException{
+		logger.info("Get customer by email:"+email);
 		Customer customer = customerRepository.findDistinctCustomerByEmail(email);
 		if(customer == null) {
 			throw new CustomerException("No records are found for a email "+email, HttpStatus.OK);
@@ -49,6 +49,7 @@ public class CustomerService {
 	}
 	
 	public ResponseEntity<String> updateCustomerById(Customer newCustomer, Long id) throws CustomerException{
+		logger.info("Update customer : "+id);
 		Optional<Customer> existingCutomerOptional = customerRepository.findById(id);
 		if(existingCutomerOptional.isEmpty()) {
 			throw new CustomerException("Customer not found "+id, HttpStatus.NOT_FOUND);
@@ -66,6 +67,7 @@ public class CustomerService {
 	}
 	
 	public ResponseEntity<String> deleteCustomerById(Long id) throws CustomerException{
+		logger.info("Delete customer : "+id);
 		Optional<Customer> existingCutomerOptional = customerRepository.findById(id);
 		if(existingCutomerOptional.isEmpty()) {
 			throw new CustomerException("Customer not found "+id, HttpStatus.NOT_FOUND);

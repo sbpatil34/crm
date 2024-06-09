@@ -32,6 +32,18 @@ public class Customer {
 	@Pattern(regexp = "^\\d{10}$", message = "Not a valid phone number")
 	private String phoneNumber;
 	
+	public Customer() {}
+	
+	public Customer(String suffix, String prefix, String firstName, String middleName, String lastName, String email, String phoneNumber) {
+		this.suffix = suffix;
+		this.prefix = prefix;
+		this.firstName	= firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;	
+		this.email	= email;
+		this.phoneNumber = phoneNumber;
+	}
+	
 	public Long getId() {
 		return id;
 	}
