@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crm-mysql-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crm-mysql
+  template:
+    metadata:
+      labels:
+        app: crm-mysql
+    spec:
+      containers:
+        - name: crm-mysql
+          image: crm-mysql:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: ChangeIt@24
+            - name: MYSQL_DATABASE
+              value: customersdb
+            - name: MYSQL_USER
+              value: crmuser
+            - name: MYSQL_PASSWORD
+              value: ThePassword    
+          ports:
+            - containerPort: 3306
