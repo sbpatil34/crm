@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Size;
 
 public class EmailId {
 	
-	@Size(min = 3, max = 10)
+	@Size(min = 3)
 	private String emailId;
 	
 	public String getEmailId() {

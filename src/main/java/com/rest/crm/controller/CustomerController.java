@@ -47,14 +47,14 @@ public class CustomerController {
 		return customerService.getCustomerByEmail(emailId.getEmailId());
 	}
 	
-	@PutMapping("/customers/{id}")
-	public  ResponseEntity<String> updateCustomerById(@Valid @RequestBody Customer newCustomer, @Valid CustomerId custId) throws CustomerException {
-		return customerService.updateCustomerById(newCustomer, custId.getId());
+	@PutMapping("/customers/{customerId}")
+	public  ResponseEntity<String> updateCustomerById(@Valid @RequestBody Customer newCustomer, @PathVariable Long customerId) throws CustomerException {
+		return customerService.updateCustomerById(newCustomer, customerId);
 	}
 	
-	@DeleteMapping("/customers/{id}")
-	public  ResponseEntity<String> deleteCustomerById(@Valid CustomerId custId) throws CustomerException {
-		return customerService.deleteCustomerById(custId.getId());
+	@DeleteMapping("/customers/{customerId}")
+	public  ResponseEntity<String> deleteCustomerById(@PathVariable Long customerId) throws CustomerException {
+		return customerService.deleteCustomerById(customerId);
 	}
 
 }

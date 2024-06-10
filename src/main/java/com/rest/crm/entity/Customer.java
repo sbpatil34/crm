@@ -25,7 +25,7 @@ public class Customer {
 	
 	@Column(unique = true)
 	@NotBlank(message = "Email name is required.")
-	@Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+[a-zA-Z0-9.-]", message = "Not a valid email id")
+	@Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,3}", message = "Not a valid email id")
 	private String email;
 	
 	@NotBlank(message = "Phone number is required.")
