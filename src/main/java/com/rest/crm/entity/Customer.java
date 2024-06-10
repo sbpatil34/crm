@@ -1,4 +1,6 @@
 package com.rest.crm.entity;
+import com.rest.crm.util.Constants;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,21 +17,21 @@ public class Customer {
 	
 	private String prefix;
 	
-	@NotBlank(message = "First name is required.")
+	@NotBlank(message = Constants.FIRST_NAME_REQUIRED)
 	private String firstName;
 	
 	private String middleName;
 	
-	@NotBlank(message = "Last name is required.")
+	@NotBlank(message = Constants.FIRST_NAME_REQUIRED)
 	private String lastName;
 	
 	@Column(unique = true)
-	@NotBlank(message = "Email name is required.")
-	@Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,3}", message = "Not a valid email id")
+	@NotBlank(message = Constants.EMAIL_IS_REQUIRED)
+	@Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,3}", message = Constants.NOT_VALID_EMAIL)
 	private String email;
 	
-	@NotBlank(message = "Phone number is required.")
-	@Pattern(regexp = "^\\d{10}$", message = "Not a valid phone number")
+	@NotBlank(message = Constants.PHONE_IS_REQUIRED)
+	@Pattern(regexp = "^\\d{10}$", message = Constants.NOT_VALID_PHONE)
 	private String phoneNumber;
 	
 	public Customer() {}
@@ -92,5 +94,4 @@ public class Customer {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
 }

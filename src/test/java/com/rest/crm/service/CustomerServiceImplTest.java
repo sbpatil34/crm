@@ -22,7 +22,7 @@ import com.rest.crm.exception.CustomerException;
 import com.rest.crm.repository.CustomerRepository;
 
 @ExtendWith(MockitoExtension.class)
-class CustomerServiceTest {
+class CustomerServiceImplTest {
 	
 	@Mock
 	CustomerRepository customerRepository;
@@ -31,7 +31,7 @@ class CustomerServiceTest {
 	Customer mockCustomer;
 	
 	@InjectMocks
-	CustomerService customerService;
+	CustomerServiceImpl customerService;
 	
 	@Test
 	void testGetAllCutomers() {

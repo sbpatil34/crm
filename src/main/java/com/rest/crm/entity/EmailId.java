@@ -14,5 +14,4 @@ public class EmailId {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}	
-
 }
