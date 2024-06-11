@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: crm-app
-          image: zees007/backend-demo-app:latest
+          image: crm-app-image:latest
           ports:
             - containerPort: 9090
           env:
