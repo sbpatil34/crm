@@ -8,23 +8,21 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       MYSQL_DATABASE: customersdb
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: crmuser
+      MYSQL_PASSWORD: ThePassword
+      MYSQL_ROOT_PASSWORD: ChangeIt@24
 
-
-
-  springboot-app:
-    container_name: spring-app
-    image: customer-app-image
+  crm-customer-app:
+    container_name: crm-customer
+    image: crm-app-image
     restart: on-failure
     build: .
     ports:
       - "8080:8080"
     environment:
       MYSQL_HOST: mysqldb
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: crmuser
+      MYSQL_PASSWORD: ThePassword
       MYSQL_PORT: 3306
     depends_on:
       - mysqldb

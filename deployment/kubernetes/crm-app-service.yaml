@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-demo-app-service
+  name: crm-app-service
 spec:
   type: NodePort
   selector:
