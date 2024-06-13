@@ -1,0 +1,18 @@
+replicaCount: 1
+
+
+mysql:
+  appname: crm-mysql
+  databasename: customersdb
+  port: 3306
+  image:
+    repository: sbpatil34/crm-mysql
+    pullPolicy: IfNotPresent
+    tag: latest
+
+crm:
+  appname: crm-app
+  image:
+    repository: sbpatil34/crm-app
+    pullPolicy: IfNotPresent
+    tag: latest

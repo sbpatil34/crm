@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.mysql.appname }}-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.mysql.appname }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.mysql.appname }}
+    spec:
+      containers:
+      - name: crm-mysql-container
+        image: "{{ .Values.mysql.image.repository }}:{{ .Values.mysql.image.tag }}"
+        imagePullPolicy: {{ .Values.mysql.image.pullPolicy }}
+        env:
+        - name: MYSQL_DATABASE
+          value: "customersdb"
+        - name: MYSQL_ROOT_PASSWORD
+          value: "ChangeIt@24"
+        - name: MYSQL_USER
+          value: "crmuser"
+        - name: MYSQL_PASSWORD
+          value: "ThePassword"
+        ports:
+        - containerPort: 3306       
+      

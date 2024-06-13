@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  crm-app-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.crm.appname }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.crm.appname }}
+    spec:
+      containers:
+      - name: crm-app-container
+        image: {{ .Values.crm.image.repository }}:{{ .Values.crm.image.tag }}
+        imagePullPolicy: {{ .Values.crm.image.pullPolicy }}
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MYSQL_HOST
+          value: "crm-mysql-service"
+        - name: MYSQL_PORT
+          value: "3306"
+        - name: MYSQL_USER
+          value: "crmuser"
+        - name: MYSQL_PASSWORD
+          value: "ThePassword"
